@@ -5,12 +5,13 @@ const colors = require('colors')
 const schema = require('./schema/schema')
 const connectDB = require('./config/db')
 const cors = require('cors')
-
+const path = require('path')
 const app = express()
 app.use(express.json())
 app.use(cors())
 connectDB()
 
+app.use(express.static(path.resolve(__dirname , './public')))
 
 app.use('/graphql' , graphqlHTTP({
     schema,
