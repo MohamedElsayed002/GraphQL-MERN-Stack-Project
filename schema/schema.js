@@ -90,7 +90,7 @@ const mutation = new GraphQLObjectType({
         deleteClient : {
             type : ClientType,
             args : {
-                id : {type : GraphQLNonNull(GraphQLString)}
+                id : {type : GraphQLNonNull(GraphQLID)}
             },
             resolve(parent,args) {
                 return Client.findByIdAndDelete(args.id)
