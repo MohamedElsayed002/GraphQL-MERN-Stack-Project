@@ -15,7 +15,7 @@ app.use(express.static(path.resolve(__dirname , './public')))
 
 app.use('/graphql' , graphqlHTTP({
     schema,
-    graphiql: process.env.NODE_ENV === 'development'
+    graphiql:true
 }))
 
 app.get('/' , (req,res) => {
