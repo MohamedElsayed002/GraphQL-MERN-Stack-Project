@@ -15,11 +15,22 @@ connectDB()
 
 app.use(express.static(path.resolve(__dirname , './public')))
 
+
+
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);
+    }
+    next();}
+)
+
 app.use('/graphql' , graphqlHTTP({
     schema,
-    graphiql:true
+    graphiql : true
 }))
-
 // app.get('/' , (req,res) => {
 //     res.send('Hello world')
 // })
